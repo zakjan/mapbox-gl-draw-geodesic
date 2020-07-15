@@ -1,0 +1,49 @@
+{
+  "name": "mapbox-gl-draw-geodesic",
+  "version": "1.0.0",
+  "description": "Geodesic tools plugin for Mapbox",
+  "keywords": [
+    "mapbox",
+    "mapbox-gl-js",
+    "mapbox-gl-draw",
+    "geodesic",
+    "circle"
+  ],
+  "author": "Jan Zak <zj@zakjan.cz>",
+  "license": "MIT",
+  "repository": "github:zakjan/mapbox-gl-draw-geodesic",
+  "main": "src/index.js",
+  "browser": "dist/mapbox-gl-draw-geodesic.min.js",
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "arc": "^0.1.1",
+    "circle-to-polygon": "^2.0.2",
+    "hat": "0.0.3",
+    "haversine-js": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/runtime": "^7.10.5",
+    "@mapbox/mapbox-gl-draw": "^1.2.0",
+    "@rollup/plugin-babel": "^5.1.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "jest": "^26.1.0",
+    "jest-matcher-deep-close-to": "^2.0.1",
+    "jest-simple-summary": "^1.0.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.22.2",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-visualizer": "^4.0.4"
+  },
+  "peerDependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.2.0"
+  }
+}
