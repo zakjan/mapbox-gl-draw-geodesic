@@ -6,7 +6,7 @@ Geodesic tools plugin for Mapbox to draw geodesic lines, polygons and circles. G
 
 <img src="docs/screenshot@2x.jpg" alt="Screenshot" width="640" height="320">
 
-Supported draw modes:
+Supported MapboxDraw modes:
 
 - draw_line_string
 - draw_polygon
@@ -51,7 +51,7 @@ The usual MapboxDraw events are fired.
 
 ### Circle GeoJSON
 
-Circle GeoJSON format was chosen experimentally, so that it plays well with MapboxDraw internal architecture. Other formats were also considered. The current format is:
+Unfortunately GeoJSON officially doesn't support circle geometries. This library uses a custom GeoJSON format to be able to represent circles drawn on the map. The format was chosen experimentally, so that it plays well with MapboxDraw internal architecture. Other formats were also considered. The current format is:
 
 ```
 {
@@ -100,7 +100,7 @@ map.on('draw.create', (event) => {
 
 ### Static mode
 
-If you need to render geodesic map features, and you don't need to use the drawing capabilities, create MapboxDraw only with the static mode. Then you can add your features to the draw instance, to render them as geodesic.
+If you need to render geodesic map features without using the drawing capabilities, create MapboxDraw with the static mode only. Then you can add your features to MapboxDraw instance to render them as geodesic.
 
 ```
 const draw = new MapboxDraw({
@@ -118,10 +118,6 @@ draw.add({
   }
 });
 ```
-
-## TODO
-
-- Add draw_circle button to original MapboxDraw controls
 
 ## Sponsors
 
