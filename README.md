@@ -1,5 +1,9 @@
 # mapbox-gl-draw-geodesic
 
+<!-- ![](https://img.shields.io/npm/dm/mapbox-gl-draw-geodesic) -->
+![](https://img.shields.io/david/zakjan/mapbox-gl-draw-geodesic)
+![](https://img.shields.io/bundlephobia/min/mapbox-gl-draw-geodesic)
+
 Geodesic tools plugin for Mapbox to draw geodesic lines, polygons and circles. Geodesic calculations are isolated inside the plugin, keeping your code abstracted away from the calculations.
 
 [Demo](https://zakjan.github.io/mapbox-gl-draw-geodesic/)
