@@ -1,6 +1,6 @@
 # mapbox-gl-draw-geodesic
 
-<!-- ![](https://img.shields.io/npm/dm/mapbox-gl-draw-geodesic) -->
+![](https://img.shields.io/npm/dm/mapbox-gl-draw-geodesic)
 ![](https://img.shields.io/david/zakjan/mapbox-gl-draw-geodesic)
 ![](https://img.shields.io/bundlephobia/min/mapbox-gl-draw-geodesic)
 
