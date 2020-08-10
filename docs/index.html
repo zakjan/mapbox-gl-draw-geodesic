@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>mapbox-gl-draw-geodesic</title>
-  <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" rel="stylesheet">
   <script src="https://unpkg.com/mapbox-gl-draw-geodesic@1.0.1/dist/mapbox-gl-draw-geodesic.js"></script>
   <!-- <script src="../dist/mapbox-gl-draw-geodesic.js"></script> -->
   <style>
@@ -32,7 +32,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const map = new mapboxgl.Map({
     container: 'map',
-    accessToken: 'pk.eyJ1IjoiemFramFuIiwiYSI6ImNrY3hsbTNrMzAxNngyc21taGo2YXB3M3cifQ.hvUlhIPJVk6swK0Y4UJwwQ',
+    accessToken: 'pk.eyJ1IjoiemFramFuIiwiYSI6ImNrY3hsbTNrMzAxNngyc21taGo2YXB3M3cifQ.hvUlhIPJVk6swK0Y4UJwwQ', // GitHub Pages token
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [30, 0],
     zoom: 0,
