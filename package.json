@@ -1,6 +1,6 @@
 {
   "name": "mapbox-gl-draw-geodesic",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Geodesic plugin for MapboxDraw",
   "keywords": [
     "mapbox",
