@@ -7,8 +7,8 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet">
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" rel="stylesheet">
-  <script src="https://unpkg.com/mapbox-gl-draw-geodesic@1.0.1/dist/mapbox-gl-draw-geodesic.js"></script>
-  <!-- <script src="../dist/mapbox-gl-draw-geodesic.js"></script> -->
+  <!-- <script src="https://unpkg.com/mapbox-gl-draw-geodesic@1.0.1/dist/mapbox-gl-draw-geodesic.js"></script> -->
+  <script src="../dist/mapbox-gl-draw-geodesic.js"></script>
   <style>
     body {
       margin: 0;
@@ -39,10 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   map.setCenter([0, 0]);
 
-  const modes = MapboxDrawGeodesic.modes;
-  const draw = new MapboxDraw({
-    modes
-  });
+  let modes = MapboxDraw.modes;
+  modes = MapboxDrawGeodesic.enable(modes);
+  const draw = new MapboxDraw({ modes });
   map.addControl(draw, 'top-left');
 
   map.on('load', () => {

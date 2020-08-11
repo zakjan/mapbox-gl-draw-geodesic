@@ -1,10 +1,10 @@
-import * as Constants from '@mapbox/mapbox-gl-draw/src/constants';
 import Point from '@mapbox/mapbox-gl-draw/src/feature_types/point';
 import LineString from '@mapbox/mapbox-gl-draw/src/feature_types/line_string';
 import Polygon from '@mapbox/mapbox-gl-draw/src/feature_types/polygon';
 import MultiFeature from '@mapbox/mapbox-gl-draw/src/feature_types/multi_feature';
 import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex';
 import createMidpoint from '@mapbox/mapbox-gl-draw/src/lib/create_midpoint';
+import * as Constants from '../constants';
 import { createCircle } from './circle_geojson';
 import createGeodesicGeojson from './create_geodesic_geojson';
 

@@ -1,5 +1,5 @@
-import * as Constants from '@mapbox/mapbox-gl-draw/src/constants';
 import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex';
+import * as Constants from '../constants';
 import { isCircle, getCircleCenter, getCircleRadius } from './circle_geojson';
 import createGeodesicLine from './create_geodesic_line';
 import createGeodesicMidpoint from './create_geodesic_midpoint';

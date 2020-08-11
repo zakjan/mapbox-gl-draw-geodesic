@@ -1,5 +1,5 @@
-import * as Constants from '@mapbox/mapbox-gl-draw/src/constants';
 import arc from 'arc';
+import * as Constants from '../constants';
 
 function coordinatesEqual(x, y) {
   return x[0] === y[0] && x[1] === y[1];

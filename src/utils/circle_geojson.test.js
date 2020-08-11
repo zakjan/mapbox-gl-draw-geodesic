@@ -1,5 +1,4 @@
-import * as Constants from '@mapbox/mapbox-gl-draw/src/constants';
-import * as ConstantsGeodesic from '../constants';
+import * as Constants from '../constants';
 import { createCircle, isCircle, getCircleCenter, setCircleCenter, getCircleRadius, setCircleRadius } from './circle_geojson';
 
 const CENTER = [0, 0];
@@ -13,7 +12,7 @@ describe('createCircle', () => {
     const expectedResult = {
       type: Constants.geojsonTypes.FEATURE,
       properties: {
-        [ConstantsGeodesic.properties.CIRCLE_RADIUS]: RADIUS
+        [Constants.properties.CIRCLE_RADIUS]: RADIUS
       },
       geometry: {
         type: Constants.geojsonTypes.POLYGON,
@@ -55,7 +54,7 @@ describe('isCircle', () => {
 
   it('returns false for an invalid circle', () => {
     const circle = createCircle(CENTER, RADIUS);
-    circle.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
+    circle.properties[Constants.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
 
     const expectedResult = false;
     const result = isCircle(circle);
@@ -74,7 +73,7 @@ describe('getCircleCenter', () => {
 
   it('throws for an invalid circle', () => {
     const circle = createCircle(CENTER, RADIUS);
-    circle.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
+    circle.properties[Constants.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
 
     expect(() => getCircleCenter(circle)).toThrow();
   });
@@ -92,7 +91,7 @@ describe('setCircleCenter', () => {
 
   it('throws for an invalid circle', () => {
     const circle = createCircle(CENTER, RADIUS);
-    circle.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
+    circle.properties[Constants.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
 
     expect(() => setCircleCenter(circle, NEW_CENTER)).toThrow();
   });
@@ -109,7 +108,7 @@ describe('getCircleRadius', () => {
 
   it('throws for an invalid circle', () => {
     const circle = createCircle(CENTER, RADIUS);
-    circle.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
+    circle.properties[Constants.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
 
     expect(() => getCircleRadius(circle)).toThrow();
   });
@@ -127,7 +126,7 @@ describe('setCircleRadius', () => {
 
   it('throws for an invalid circle', () => {
     const circle = createCircle(CENTER, RADIUS);
-    circle.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
+    circle.properties[Constants.properties.CIRCLE_RADIUS] = INVALID_RADIUS;
 
     expect(() => setCircleRadius(circle, NEW_RADIUS)).toThrow();
   });

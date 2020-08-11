@@ -1,7 +1,6 @@
-import * as Constants from '@mapbox/mapbox-gl-draw/src/constants';
 import * as CommonSelectors from '@mapbox/mapbox-gl-draw/src/lib/common_selectors';
 import doubleClickZoom from '@mapbox/mapbox-gl-draw/src/lib/double_click_zoom';
-import * as ConstantsGeodesic from '../constants';
+import * as Constants from '../constants';
 import { createCircle, getCircleCenter } from '../utils/circle_geojson';
 import distance from '../utils/distance';
 import createGeodesicGeojson from '../utils/create_geodesic_geojson';
@@ -32,7 +31,7 @@ DrawCircleGeodesic.onDrag = DrawCircleGeodesic.onTouchMove = function(state, e) 
     const geojson = state.circle.toGeoJSON();
     const center = getCircleCenter(geojson);
     const radius = distance(center, point);
-    state.circle.setProperty(ConstantsGeodesic.properties.CIRCLE_RADIUS, radius);
+    state.circle.setProperty(Constants.properties.CIRCLE_RADIUS, radius);
     state.circle.changed();
   }
 };

@@ -1,10 +1,10 @@
 # mapbox-gl-draw-geodesic
 
-![](https://img.shields.io/npm/dm/mapbox-gl-draw-geodesic)
-![](https://img.shields.io/david/zakjan/mapbox-gl-draw-geodesic)
-![](https://img.shields.io/bundlephobia/min/mapbox-gl-draw-geodesic)
+[![](https://img.shields.io/npm/dm/mapbox-gl-draw-geodesic)](https://www.npmjs.com/package/mapbox-gl-draw-geodesic)
+[![](https://img.shields.io/david/zakjan/mapbox-gl-draw-geodesic)](https://www.npmjs.com/package/mapbox-gl-draw-geodesic)
+[![](https://img.shields.io/bundlephobia/min/mapbox-gl-draw-geodesic)](https://www.npmjs.com/package/mapbox-gl-draw-geodesic)
 
-Geodesic plugin for Mapbox to draw geodesic lines, polygons and circles. Geodesic calculations are isolated inside the plugin, keeping the developer using the plugin abstracted away from the calculations.
+Geodesic plugin for MapboxDraw to draw geodesic lines, polygons and circles. Geodesic calculations are isolated inside the plugin, keeping the developer using the plugin abstracted away from the calculations.
 
 [Demo](https://zakjan.github.io/mapbox-gl-draw-geodesic/)
 
@@ -34,24 +34,33 @@ or
 
 ## Usage
 
-This plugin modes inherits from original MapboxDraw modes, adding geodesic calculation prior rendering the map features. Use it as a drop-in replacement.
+This plugin exposes a single function `enable`, which should be used to patch the original `MapboxDraw.modes` object.
 
 ```
 import MapboxDraw from 'mapbox-gl-draw';
 import MapboxDrawGeodesic from 'mapbox-gl-draw-geodesic';
 
-// original modes
-const draw = new MapboxDraw({
-  modes: MapboxDraw.modes
-});
-
-// geodesic modes
-const draw = new MapboxDraw({
-  modes: MapboxDrawGeodesic.modes
+let modes = MapboxDraw.modes;
+modes = MapboxDrawGeodesic.enable(modes);
+const draw = new MapboxDraw({ modes });
 });
 ```
 
 The usual MapboxDraw events are fired.
+
+The patching method is compatible with [mapbox-gl-draw-waypoint](https://github.com/zakjan/mapbox-gl-draw-waypoint), both patches can be used together.
+
+```
+import MapboxDraw from 'mapbox-gl-draw';
+import MapboxDrawGeodesic from 'mapbox-gl-draw-geodesic';
+import MapboxDrawWaypoint from 'mapbox-gl-draw-waypoint';
+
+let modes = MapboxDraw.modes;
+modes = MapboxDrawGeodesic.enable(modes);
+modes = MapboxDrawWaypoint.enable(modes);
+const draw = new MapboxDraw({ modes });
+});
+```
 
 ### Circle GeoJSON
 

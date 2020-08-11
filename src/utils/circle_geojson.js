@@ -1,6 +1,5 @@
-import * as Constants from '@mapbox/mapbox-gl-draw/src/constants';
 import hat from 'hat';
-import * as ConstantsGeodesic from '../constants';
+import * as Constants from '../constants';
 
 export function createCircle(center, radius, properties = {}) {
   if (!(radius > 0)) {
@@ -11,7 +10,7 @@ export function createCircle(center, radius, properties = {}) {
     id: hat(),
     type: Constants.geojsonTypes.FEATURE,
     properties: {
-      [ConstantsGeodesic.properties.CIRCLE_RADIUS]: radius, // km
+      [Constants.properties.CIRCLE_RADIUS]: radius, // km
       ...properties
     },
     geometry: {
@@ -23,8 +22,8 @@ export function createCircle(center, radius, properties = {}) {
 
 export function isCircle(geojson) {
   return geojson.geometry.type === Constants.geojsonTypes.POLYGON &&
-    typeof geojson.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] === 'number' &&
-    geojson.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] > 0;
+    typeof geojson.properties[Constants.properties.CIRCLE_RADIUS] === 'number' &&
+    geojson.properties[Constants.properties.CIRCLE_RADIUS] > 0;
 }
 
 export function getCircleCenter(geojson) {
@@ -48,7 +47,7 @@ export function getCircleRadius(geojson) {
     throw new Error('GeoJSON is not a circle');
   }
 
-  return geojson.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS];
+  return geojson.properties[Constants.properties.CIRCLE_RADIUS];
 }
 
 export function setCircleRadius(geojson, radius) {
@@ -56,5 +55,5 @@ export function setCircleRadius(geojson, radius) {
     throw new Error('GeoJSON is not a circle');
   }
 
-  geojson.properties[ConstantsGeodesic.properties.CIRCLE_RADIUS] = radius;
+  geojson.properties[Constants.properties.CIRCLE_RADIUS] = radius;
 }
