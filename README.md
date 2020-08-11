@@ -43,7 +43,6 @@ import MapboxDrawGeodesic from 'mapbox-gl-draw-geodesic';
 let modes = MapboxDraw.modes;
 modes = MapboxDrawGeodesic.enable(modes);
 const draw = new MapboxDraw({ modes });
-});
 ```
 
 The usual MapboxDraw events are fired.
@@ -59,7 +58,6 @@ let modes = MapboxDraw.modes;
 modes = MapboxDrawGeodesic.enable(modes);
 modes = MapboxDrawWaypoint.enable(modes);
 const draw = new MapboxDraw({ modes });
-});
 ```
 
 ### Circle GeoJSON
