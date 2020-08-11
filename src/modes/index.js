@@ -8,9 +8,6 @@ import patchSimpleSelect from './simple_select';
 import patchDirectSelect from './direct_select';
 import Static from './static';
 
-export const modes = {
-};
-
 export function enable(modes) {
     return {
       ...modes,
