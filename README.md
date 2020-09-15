@@ -4,13 +4,13 @@
 [![](https://img.shields.io/david/zakjan/mapbox-gl-draw-geodesic)](https://www.npmjs.com/package/mapbox-gl-draw-geodesic)
 [![](https://img.shields.io/bundlephobia/min/mapbox-gl-draw-geodesic)](https://www.npmjs.com/package/mapbox-gl-draw-geodesic)
 
-Geodesic plugin for MapboxDraw to draw geodesic lines, polygons and circles. Geodesic calculations are isolated inside the plugin, keeping the developer using the plugin abstracted away from the calculations.
+Geodesic plugin for Mapbox GL Draw to draw geodesic lines, polygons and circles. Geodesic calculations are isolated inside the plugin, keeping the developer using the plugin abstracted away from the calculations.
 
 [Demo](https://zakjan.github.io/mapbox-gl-draw-geodesic/)
 
 <img src="docs/screenshot@2x.jpg" alt="Screenshot" width="640" height="320">
 
-Supported MapboxDraw modes:
+Supported Mapbox GL Draw modes:
 
 - draw_line_string
 - draw_polygon
@@ -45,7 +45,7 @@ modes = MapboxDrawGeodesic.enable(modes);
 const draw = new MapboxDraw({ modes });
 ```
 
-The usual MapboxDraw events are fired.
+The usual Mapbox GL Draw events are fired.
 
 The patching method is compatible with [mapbox-gl-draw-waypoint](https://github.com/zakjan/mapbox-gl-draw-waypoint), both patches can be used together.
 
@@ -62,7 +62,7 @@ const draw = new MapboxDraw({ modes });
 
 ### Circle GeoJSON
 
-Unfortunately GeoJSON officially doesn't support circle geometries. This library uses a custom GeoJSON format to be able to represent circles drawn on the map. The format was chosen experimentally, so that it plays well with MapboxDraw internal architecture. Other formats were also considered. The current format is:
+Unfortunately GeoJSON officially doesn't support circle geometries. This library uses a custom GeoJSON format to be able to represent circles drawn on the map. The format was chosen experimentally, so that it plays well with Mapbox GL Draw internal architecture. Other formats were also considered. The current format is:
 
 ```
 {
@@ -111,7 +111,7 @@ map.on('draw.create', (event) => {
 
 ### Static mode
 
-If you need to render geodesic map features without using the drawing capabilities, create MapboxDraw with the static mode only. Then you can add your features to MapboxDraw instance to render them as geodesic.
+If you need to render geodesic map features without using the drawing capabilities, create Mapbox GL Draw with the static mode only. Then you can add your features to Mapbox GL Draw instance to render them as geodesic.
 
 ```
 const draw = new MapboxDraw({
