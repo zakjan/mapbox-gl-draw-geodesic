@@ -7,5 +7,6 @@ export const modes = {
 };
 
 export const properties = {
-    CIRCLE_RADIUS: 'circleRadius'
+    CIRCLE_RADIUS: 'circleRadius',
+    CIRCLE_HANDLE_BEARING: 'circleHandleBearing'
 };

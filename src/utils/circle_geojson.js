@@ -15,7 +15,7 @@ export function createCircle(center, radius, properties = {}) {
     },
     geometry: {
       type: Constants.geojsonTypes.POLYGON,
-      coordinates: [[center, center, center, center, center]] // four handles (NSEW)
+      coordinates: [[center, center, center, center]] // valid polygon needs 3 vertices
     }
   };
 }
@@ -39,7 +39,7 @@ export function setCircleCenter(geojson, center) {
     throw new Error('GeoJSON is not a circle');
   }
 
-  geojson.geometry.coordinates = [[center, center, center, center, center]]; // four handles (NSEW)
+  geojson.geometry.coordinates = [[center, center, center, center]]; // valid polygon needs 3 vertices
 }
 
 export function getCircleRadius(geojson) {

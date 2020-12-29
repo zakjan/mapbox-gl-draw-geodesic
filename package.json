@@ -21,9 +21,7 @@
   },
   "dependencies": {
     "arc": "^0.1.1",
-    "circle-to-polygon": "^2.0.2",
-    "hat": "0.0.3",
-    "haversine-js": "^1.0.0"
+    "hat": "0.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

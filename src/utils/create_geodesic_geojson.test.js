@@ -267,8 +267,6 @@ describe('createGeodesicGeojson', () => {
     const expectedResult = [
       createGeojsonMatch(Constants.geojsonTypes.POLYGON),
       createGeojsonMatch(Constants.geojsonTypes.POINT),
-      createGeojsonMatch(Constants.geojsonTypes.POINT),
-      createGeojsonMatch(Constants.geojsonTypes.POINT),
       createGeojsonMatch(Constants.geojsonTypes.POINT)
     ];
     const result = createGeodesicGeojson(internalGeojson, { ctx: mode._ctx, steps: STEPS });
@@ -285,8 +283,6 @@ describe('createGeodesicGeojson', () => {
     const expectedResult = [
       createGeojsonMatch(Constants.geojsonTypes.POLYGON),
       createGeojsonMatch(Constants.geojsonTypes.POINT, { active: Constants.activeStates.ACTIVE }),
-      createGeojsonMatch(Constants.geojsonTypes.POINT),
-      createGeojsonMatch(Constants.geojsonTypes.POINT),
       createGeojsonMatch(Constants.geojsonTypes.POINT)
     ];
     const result = createGeodesicGeojson(internalGeojson, { ctx: mode._ctx, selectedPaths: ['0.0'], steps: STEPS });

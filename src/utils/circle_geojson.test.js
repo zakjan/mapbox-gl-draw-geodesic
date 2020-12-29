@@ -16,7 +16,7 @@ describe('createCircle', () => {
       },
       geometry: {
         type: Constants.geojsonTypes.POLYGON,
-        coordinates: [[CENTER, CENTER, CENTER, CENTER, CENTER]]
+        coordinates: [[CENTER, CENTER, CENTER, CENTER]]
       }
     };
     const result = createCircle(CENTER, RADIUS);
@@ -35,7 +35,7 @@ describe('isCircle', () => {
       properties: {},
       geometry: {
         type: Constants.geojsonTypes.POLYGON,
-        coordinates: [[CENTER, CENTER, CENTER, CENTER, CENTER]]
+        coordinates: [[CENTER, CENTER, CENTER, CENTER]]
       }
     };
 

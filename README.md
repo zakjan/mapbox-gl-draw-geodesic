@@ -72,7 +72,7 @@ Unfortunately GeoJSON officially doesn't support circle geometries. This library
   },
   geometry: {
     type: 'Polygon',
-    coordinates: [[center, center, center, center, center]] // four handles (NSEW)
+    coordinates: [[center, center, center, center]] // valid polygon needs 3 vertices
   }
 }
 ```
