@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.1.0
+
 - add center point, change radius handles from NSEW points to movable point
 ## 2.0.0
 
