@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>mapbox-gl-draw-geodesic</title>
-  <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.13.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.13.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css" rel="stylesheet">
   <script src="https://unpkg.com/mapbox-gl-draw-geodesic@2.1.1/dist/mapbox-gl-draw-geodesic.js"></script>
   <!-- <script src="../dist/mapbox-gl-draw-geodesic.js"></script> -->
   <style>
     body {
       margin: 0;
     }
+
     #map {
       width: 100vw;
       height: 100vh;
     }
+
     #mode {
       position: absolute;
       top: 10px;
@@ -24,161 +27,163 @@
     }
   </style>
 </head>
+
 <body>
   <div id="map"></div>
   <select id="mode"></select>
 
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  const map = new mapboxgl.Map({
-    container: 'map',
-    accessToken: 'pk.eyJ1IjoiemFramFuIiwiYSI6ImNramFiMDR6MTdjZ3MzMnFqMnpkZ29lbGYifQ.0oVXcxWwY9EbtWiqcjqB5g', // mapbox-gl-draw-geodesic token
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [30, 0],
-    zoom: 0,
-  });
-  map.setCenter([0, 0]);
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const map = new mapboxgl.Map({
+        container: 'map',
+        accessToken: 'pk.eyJ1IjoiemFramFuIiwiYSI6ImNramFiMDR6MTdjZ3MzMnFqMnpkZ29lbGYifQ.0oVXcxWwY9EbtWiqcjqB5g', // mapbox-gl-draw-geodesic token
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [30, 0],
+        zoom: 0,
+      });
+      map.setCenter([0, 0]);
 
-  let modes = MapboxDraw.modes;
-  modes = MapboxDrawGeodesic.enable(modes);
-  const draw = new MapboxDraw({ modes });
-  map.addControl(draw, 'top-left');
+      let modes = MapboxDraw.modes;
+      modes = MapboxDrawGeodesic.enable(modes);
+      const draw = new MapboxDraw({ modes });
+      map.addControl(draw, 'top-left');
 
-  map.on('load', () => {
-    // antimeridian
-    map.addSource('antimeridian', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'LineString',
-              coordinates: [[180, 90], [180, -90]]
-            }
+      map.on('load', () => {
+        // antimeridian
+        map.addSource('antimeridian', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [
+              {
+                type: 'Feature',
+                geometry: {
+                  type: 'LineString',
+                  coordinates: [[180, 90], [180, -90]]
+                }
+              }
+            ]
           }
-        ]
-      }
-    });
-    map.addLayer({
-      id: 'antimeridian',
-      source: 'antimeridian',
-      type: 'line',
-      paint: {
-        'line-color': 'rgba(255, 0, 0, 1)',
-      }
-    });
+        });
+        map.addLayer({
+          id: 'antimeridian',
+          source: 'antimeridian',
+          type: 'line',
+          paint: {
+            'line-color': 'rgba(255, 0, 0, 1)',
+          }
+        });
 
-    // test features - normal
-    for (let i = -70; i <= 70; i += 10) {
-      const circle = MapboxDrawGeodesic.createCircle([0, 0], Number.EPSILON);
-      draw.add(circle);
-      MapboxDrawGeodesic.setCircleCenter(circle, [0, i]);
-      MapboxDrawGeodesic.setCircleRadius(circle, 300);
-      draw.add(circle);
-    }
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'LineString',
-        coordinates: [[-40, 37.5], [40, 37.5], [40, 30], [-40, -30], [-40, -37.5], [40, -37.5]]
-      }
-    });
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'LineString',
-        coordinates: [[50, 42.5], [50, -42.5], [-50, -42.5], [-50, 42.5], [50, 42.5]]
-      }
-    });
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Polygon',
-        coordinates: [[[-40, 20], [40, 20], [40, -20], [-40, -20], [-40, 20]]]
-      }
-    });
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Point',
-        coordinates: [86.925278, 27.988056]
-      }
-    });
-    // test features - crossing antimeridian
-    for (let i = -70; i <= 70; i += 10) {
-      const circle = MapboxDrawGeodesic.createCircle([0, 0], Number.EPSILON);
-      draw.add(circle);
-      MapboxDrawGeodesic.setCircleCenter(circle, [180 + 0, i]);
-      MapboxDrawGeodesic.setCircleRadius(circle, 300);
-      draw.add(circle);
-    }
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'LineString',
-        coordinates: [[180 + -40, 37.5], [180 + 40, 37.5], [180 + 40, 30], [180 + -40, -30], [180 + -40, -37.5], [180 + 40, -37.5]]
-      }
-    });
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'LineString',
-        coordinates: [[180 + 50, 42.5], [180 + 50, -42.5], [180 + -50, -42.5], [180 + -50, 42.5], [180 + 50, 42.5]]
-      }
-    });
-    draw.add({
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Polygon',
-        coordinates: [[[180 + -40, 20], [180 + 40, 20], [180 + 40, -20], [180 + -40, -20], [180 + -40, 20]]]
-      }
-    });
-  });
-  map.on('draw.create', (event) => {
-    const geojson = event.features[0];
-    console.log('create', geojson);
+        // test features - normal
+        for (let i = -70; i <= 70; i += 10) {
+          const circle = MapboxDrawGeodesic.createCircle([0, 0], Number.EPSILON);
+          draw.add(circle);
+          MapboxDrawGeodesic.setCircleCenter(circle, [0, i]);
+          MapboxDrawGeodesic.setCircleRadius(circle, 300);
+          draw.add(circle);
+        }
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [[-40, 37.5], [40, 37.5], [40, 30], [-40, -30], [-40, -37.5], [40, -37.5]]
+          }
+        });
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [[50, 42.5], [50, -42.5], [-50, -42.5], [-50, 42.5], [50, 42.5]]
+          }
+        });
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Polygon',
+            coordinates: [[[-40, 20], [40, 20], [40, -20], [-40, -20], [-40, 20]]]
+          }
+        });
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: [86.925278, 27.988056]
+          }
+        });
+        // test features - crossing antimeridian
+        for (let i = -70; i <= 70; i += 10) {
+          const circle = MapboxDrawGeodesic.createCircle([0, 0], Number.EPSILON);
+          draw.add(circle);
+          MapboxDrawGeodesic.setCircleCenter(circle, [180 + 0, i]);
+          MapboxDrawGeodesic.setCircleRadius(circle, 300);
+          draw.add(circle);
+        }
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [[180 + -40, 37.5], [180 + 40, 37.5], [180 + 40, 30], [180 + -40, -30], [180 + -40, -37.5], [180 + 40, -37.5]]
+          }
+        });
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [[180 + 50, 42.5], [180 + 50, -42.5], [180 + -50, -42.5], [180 + -50, 42.5], [180 + 50, 42.5]]
+          }
+        });
+        draw.add({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Polygon',
+            coordinates: [[[180 + -40, 20], [180 + 40, 20], [180 + 40, -20], [180 + -40, -20], [180 + -40, 20]]]
+          }
+        });
+      });
+      map.on('draw.create', (event) => {
+        const geojson = event.features[0];
+        console.log('create', geojson);
 
-    if (MapboxDrawGeodesic.isCircle(geojson)) {
-      const center = MapboxDrawGeodesic.getCircleCenter(geojson);
-      const radius = MapboxDrawGeodesic.getCircleRadius(geojson);
-      console.log('circle', 'center', center, 'radius', radius);
-    }
-  });
-  map.on('draw.update', (event) => {
-    const geojson = event.features[0];
-    console.log('update', event.action, geojson);
+        if (MapboxDrawGeodesic.isCircle(geojson)) {
+          const center = MapboxDrawGeodesic.getCircleCenter(geojson);
+          const radius = MapboxDrawGeodesic.getCircleRadius(geojson);
+          console.log('circle', 'center', center, 'radius', radius);
+        }
+      });
+      map.on('draw.update', (event) => {
+        const geojson = event.features[0];
+        console.log('update', event.action, geojson);
 
-    if (MapboxDrawGeodesic.isCircle(geojson)) {
-      const center = MapboxDrawGeodesic.getCircleCenter(geojson);
-      const radius = MapboxDrawGeodesic.getCircleRadius(geojson);
-      console.log('circle', 'center', center, 'radius', radius);
-    }
-  });
+        if (MapboxDrawGeodesic.isCircle(geojson)) {
+          const center = MapboxDrawGeodesic.getCircleCenter(geojson);
+          const radius = MapboxDrawGeodesic.getCircleRadius(geojson);
+          console.log('circle', 'center', center, 'radius', radius);
+        }
+      });
 
-  const modeSelect = document.getElementById('mode');
-  Object.keys(modes).forEach((mode) => {
-    const option = document.createElement('option');
-    option.text = mode;
-    modeSelect.add(option);
-  });
-  modeSelect.value = draw.getMode();
-  map.on('draw.modechange', (event) => {
-    console.log('modechange', event.mode);
-    modeSelect.value = event.mode;
-  });
-  modeSelect.addEventListener('change', () => {
-    draw.changeMode(modeSelect.value);
-  });
-});
-</script>
+      const modeSelect = document.getElementById('mode');
+      Object.keys(modes).forEach((mode) => {
+        const option = document.createElement('option');
+        option.text = mode;
+        modeSelect.add(option);
+      });
+      modeSelect.value = draw.getMode();
+      map.on('draw.modechange', (event) => {
+        console.log('modechange', event.mode);
+        modeSelect.value = event.mode;
+      });
+      modeSelect.addEventListener('change', () => {
+        draw.changeMode(modeSelect.value);
+      });
+    });
+  </script>
 </body>
+
 </html>
