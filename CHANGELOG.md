@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.1.1
+
 - fix computing geodesic lines crossing antimeridian
 
 ## 2.1.0
