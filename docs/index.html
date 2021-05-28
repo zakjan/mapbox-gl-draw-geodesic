@@ -90,6 +90,14 @@ window.addEventListener('DOMContentLoaded', () => {
       type: 'Feature',
       properties: {},
       geometry: {
+        type: 'LineString',
+        coordinates: [[50, 42.5], [50, -42.5], [-50, -42.5], [-50, 42.5], [50, 42.5]]
+      }
+    });
+    draw.add({
+      type: 'Feature',
+      properties: {},
+      geometry: {
         type: 'Polygon',
         coordinates: [[[-40, 20], [40, 20], [40, -20], [-40, -20], [-40, 20]]]
       }
@@ -116,6 +124,14 @@ window.addEventListener('DOMContentLoaded', () => {
       geometry: {
         type: 'LineString',
         coordinates: [[180 + -40, 37.5], [180 + 40, 37.5], [180 + 40, 30], [180 + -40, -30], [180 + -40, -37.5], [180 + 40, -37.5]]
+      }
+    });
+    draw.add({
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'LineString',
+        coordinates: [[180 + 50, 42.5], [180 + 50, -42.5], [180 + -50, -42.5], [180 + -50, 42.5], [180 + 50, 42.5]]
       }
     });
     draw.add({

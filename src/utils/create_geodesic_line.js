@@ -25,17 +25,20 @@ function createGeodesicLine(coordinates, steps = 32) {
   // arc.js returns the line crossing antimeridian split into two MultiLineString segments
   // (the first going towards to antimeridian, the second going away from antimeridian, both in range -180..180 longitude)
   // fix Mapbox rendering by merging them together, adding 360 to longitudes on the right side
-  let crossed = false;
+  let worldOffset = 0;
   const geodesicCoordinates = geodesicSegments.map(geodesicSegment => {
     if (geodesicSegment.geometry.type === Constants.geojsonTypes.MULTI_LINE_STRING) {
-      crossed = !crossed;
-      const direction = geodesicSegment.geometry.coordinates[0][0][0] > geodesicSegment.geometry.coordinates[1][0][0];
-      return [
-        ...geodesicSegment.geometry.coordinates[0].map(x => [x[0] + (direction ? 0 : 360), x[1]]),
-        ...geodesicSegment.geometry.coordinates[1].map(x => [x[0] + (direction ? 360 : 0), x[1]])
+      const prevWorldOffset = worldOffset;
+      const nextWorldOffset = worldOffset + (geodesicSegment.geometry.coordinates[0][0][0] > geodesicSegment.geometry.coordinates[1][0][0] ? 1 : -1);
+      const geodesicCoordinates = [
+        ...geodesicSegment.geometry.coordinates[0].map(x => [x[0] + prevWorldOffset * 360, x[1]]),
+        ...geodesicSegment.geometry.coordinates[1].map(x => [x[0] + nextWorldOffset * 360, x[1]])
       ];
+      worldOffset = nextWorldOffset;
+      return geodesicCoordinates;
     } else {
-      return geodesicSegment.geometry.coordinates.map(x => [x[0] + (crossed ? 360 : 0), x[1]]);
+      const geodesicCoordinates = geodesicSegment.geometry.coordinates.map(x => [x[0] + worldOffset * 360, x[1]]);
+      return geodesicCoordinates;
     }
   }).flat();
 
