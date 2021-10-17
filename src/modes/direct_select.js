@@ -1,6 +1,6 @@
 import * as Constants from '../constants';
 import { isCircle, getCircleCenter } from '../utils/circle_geojson';
-import { distance, bearing } from '../utils/geodesy';
+import { distance, initialBearing } from '../utils/geodesy';
 import createGeodesicGeojson from '../utils/create_geodesic_geojson';
 
 function patchDirectSelect(DirectSelect) {
@@ -14,7 +14,7 @@ function patchDirectSelect(DirectSelect) {
         const center = getCircleCenter(geojson);
         const handle = [e.lngLat.lng, e.lngLat.lat];
         const radius = distance(center, handle);
-        const handleBearing = bearing(center, handle);
+        const handleBearing = initialBearing(center, handle);
         state.feature.properties[Constants.properties.CIRCLE_RADIUS] = radius;
         state.feature[Constants.properties.CIRCLE_HANDLE_BEARING] = handleBearing;
         state.feature.changed();

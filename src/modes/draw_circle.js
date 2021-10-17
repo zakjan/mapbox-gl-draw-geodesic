@@ -2,7 +2,7 @@ import * as CommonSelectors from '@mapbox/mapbox-gl-draw/src/lib/common_selector
 import doubleClickZoom from '@mapbox/mapbox-gl-draw/src/lib/double_click_zoom';
 import * as Constants from '../constants';
 import { createCircle, getCircleCenter } from '../utils/circle_geojson';
-import { distance, bearing } from '../utils/geodesy';
+import { distance, initialBearing } from '../utils/geodesy';
 import createGeodesicGeojson from '../utils/create_geodesic_geojson';
 import dragPan from '../utils/drag_pan';
 
@@ -30,7 +30,7 @@ DrawCircleGeodesic.onDrag = DrawCircleGeodesic.onTouchMove = function(state, e) 
     const center = getCircleCenter(geojson);
     const handle = [e.lngLat.lng, e.lngLat.lat];
     const radius = distance(center, handle);
-    const handleBearing = bearing(center, handle);
+    const handleBearing = initialBearing(center, handle);
     state.circle.properties[Constants.properties.CIRCLE_RADIUS] = radius;
     state.circle[Constants.properties.CIRCLE_HANDLE_BEARING] = handleBearing;
     state.circle.changed();

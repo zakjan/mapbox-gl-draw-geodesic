@@ -4,7 +4,7 @@ module.exports = {
     '<rootDir>/jest.setup.js',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!(@mapbox/mapbox-gl-draw)/)'
+    'node_modules/(?!(@mapbox/mapbox-gl-draw|geodesy-fn)/)'
   ],
   reporters: [
     'default',

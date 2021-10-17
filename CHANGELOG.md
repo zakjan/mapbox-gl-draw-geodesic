@@ -1,5 +1,7 @@
 # Changelog
 
+- use geodesy-fn
+
 ## 2.1.1
 
 - fix computing geodesic lines crossing antimeridian

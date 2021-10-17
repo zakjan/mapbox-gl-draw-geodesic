@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "arc": "^0.1.1",
+    "geodesy-fn": "^1.0.1",
     "hat": "0.0.3"
   },
   "devDependencies": {
