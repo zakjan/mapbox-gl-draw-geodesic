@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.1.2
+
 - use geodesy-fn
 
 ## 2.1.1
