@@ -20,26 +20,26 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "arc": "^0.1.1",
+    "arc": "^0.1.2",
     "geodesy-fn": "^1.0.1",
     "hat": "0.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/plugin-transform-runtime": "^7.14.3",
-    "@babel/preset-env": "^7.14.2",
-    "@babel/runtime": "^7.14.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/runtime": "^7.16.3",
     "@mapbox/mapbox-gl-draw": "1.3.0",
     "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "jest": "^27.0.1",
-    "jest-matcher-deep-close-to": "^2.0.1",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "jest": "^27.3.1",
+    "jest-matcher-deep-close-to": "^3.0.2",
     "jest-simple-summary": "^1.0.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.50.3",
+    "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-visualizer": "^5.5.0"
+    "rollup-plugin-visualizer": "^5.5.2"
   },
   "peerDependencies": {
     "@mapbox/mapbox-gl-draw": "^1.3.0"
