@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.3
+
+- improve performance for large lines
+
 ## 2.1.2
 
 - use geodesy-fn
