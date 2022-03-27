@@ -1,6 +1,6 @@
 import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex';
 import * as Constants from '../constants';
-import { isCircle, getCircleCenter, getCircleRadius } from './circle_geojson';
+import { isCircleByTypeAndProperties, getCircleCenter, getCircleRadius } from './circle_geojson';
 import createGeodesicLine from './create_geodesic_line';
 import createGeodesicCircle from './create_geodesic_circle';
 import { midpoint, destinationPoint } from './geodesy';
@@ -8,10 +8,28 @@ import { midpoint, destinationPoint } from './geodesy';
 const STEPS = 32;
 const HANDLE_BEARING = 45;
 
-function getCoordinate(coordinates, path) {
-  const ids = path.split('.').map(x => parseInt(x, 10));
-  const coordinate = ids.reduce((coordinates, id) => coordinates[id], coordinates);
-  return JSON.parse(JSON.stringify(coordinate));
+function isCircleFeature(feature) {
+  return isCircleByTypeAndProperties(feature.type, feature.properties);
+}
+
+// returns path with the last coord id subtracted by 1
+function getMidpointStartCoordPath(path) {
+  return path.split('.').map((x, i, array) => i === array.length - 1 ? (parseInt(x, 10) - 1).toString() : x).join('.');
+}
+
+// returns path with the last coord id of a polygon overridden to 0
+// see https://github.com/mapbox/mapbox-gl-draw/pull/998
+function getMidpointEndCoordPath(feature, path) {
+  if (feature.type === Constants.geojsonTypes.POLYGON || feature.type === Constants.geojsonTypes.MULTI_POLYGON) {
+    try {
+      feature.getCoordinate(path);
+      return path;
+    } catch (e) {
+      return path.split('.').map((x, i, array) => i === array.length - 1 ? '0' : x).join('.');
+    }
+  } else {
+    return path;
+  }
 }
 
 function createGeodesicGeojson(geojson, options) {
@@ -23,10 +41,9 @@ function createGeodesicGeojson(geojson, options) {
 
   const featureId = properties.parent || properties.id;
   const feature = options.ctx.store.get(featureId);
-  const featureGeojson = feature.toGeoJSON();
 
   if (type === Constants.geojsonTypes.POINT) {
-    if ((properties.meta === Constants.meta.VERTEX || properties.meta === Constants.meta.MIDPOINT) && isCircle(featureGeojson)) {
+    if (isCircleFeature(feature)) {
       return []; // hide circle points, they are displayed in processCircle instead
     } else if (properties.meta === Constants.meta.MIDPOINT) {
       return processMidpoint(); // calculate geodesic midpoint
@@ -36,7 +53,7 @@ function createGeodesicGeojson(geojson, options) {
   } else if (type === Constants.geojsonTypes.LINE_STRING) {
     return processLine(); // calculate geodesic line
   } else if (type === Constants.geojsonTypes.POLYGON) {
-    if (isCircle(featureGeojson)) {
+    if (isCircleFeature(feature)) {
       return processCircle(); // calculate geodesic circle
     } else {
       return processPolygon(); // calculate geodesic polygon
@@ -55,13 +72,11 @@ function createGeodesicGeojson(geojson, options) {
   function processMidpoint() {
     const coordPath = properties.coord_path;
 
-    // subtract 1 from the last coord path id
-    const coordPathIds = coordPath.split('.').map(x => parseInt(x, 10));
-    const startCoordPath = coordPathIds.map((x, i) => x + (i === coordPathIds.length - 1 ? -1 : 0)).join('.');
-    const endCoordPath = coordPath;
+    const startCoordPath = getMidpointStartCoordPath(coordPath);
+    const endCoordPath = getMidpointEndCoordPath(feature, coordPath);
 
-    const startCoord = getCoordinate(featureGeojson.geometry.coordinates, startCoordPath);
-    const endCoord = getCoordinate(featureGeojson.geometry.coordinates, endCoordPath);
+    const startCoord = feature.getCoordinate(startCoordPath);
+    const endCoord = feature.getCoordinate(endCoordPath);
     const midCoord = midpoint(startCoord, endCoord);
 
     const geodesicGeojson = {
@@ -106,6 +121,7 @@ function createGeodesicGeojson(geojson, options) {
   }
 
   function processCircle() {
+    const featureGeojson = feature.toGeoJSON();
     const center = getCircleCenter(featureGeojson);
     const radius = getCircleRadius(featureGeojson);
     const handleBearing = feature[Constants.properties.CIRCLE_HANDLE_BEARING] || HANDLE_BEARING;

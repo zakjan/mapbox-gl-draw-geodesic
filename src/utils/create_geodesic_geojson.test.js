@@ -166,6 +166,22 @@ describe('createGeodesicGeojson', () => {
     expect(result).toMatchObject(expectedResult);
   });
 
+  it('returns a polygon midpoint, last midpoint', () => {
+    const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.POLYGON, [COORDINATES]));
+    mode.addFeature(feature);
+    const internalGeojson = createMidpoint(
+      feature.id,
+      createVertex(feature.id, feature.getCoordinate(`0.${COORDINATES.length - 2}`), `0.${COORDINATES.length - 2}`, false),
+      createVertex(feature.id, feature.getCoordinate('0.0'), `0.${COORDINATES.length - 1}`, false),
+      map
+    );
+
+    const expectedResult = [createGeojsonMatch(Constants.geojsonTypes.POINT)];
+    const result = createGeodesicGeojson(internalGeojson, { ctx: mode._ctx, steps: STEPS });
+    expect(result.length).toEqual(expectedResult.length);
+    expect(result).toMatchObject(expectedResult);
+  });
+
   it('returns a multiline', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.MULTI_LINE_STRING, [COORDINATES]));
     mode.addFeature(feature);
@@ -211,6 +227,22 @@ describe('createGeodesicGeojson', () => {
       feature.id,
       createVertex(feature.id, feature.getCoordinate('0.0.0'), '0.0.0', false),
       createVertex(feature.id, feature.getCoordinate('0.0.1'), '0.0.1', false),
+      map
+    );
+
+    const expectedResult = [createGeojsonMatch(Constants.geojsonTypes.POINT)];
+    const result = createGeodesicGeojson(internalGeojson, { ctx: mode._ctx, steps: STEPS });
+    expect(result.length).toEqual(expectedResult.length);
+    expect(result).toMatchObject(expectedResult);
+  });
+
+  it('returns a multipolygon midpoint, last midpoint', () => {
+    const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.MULTI_POLYGON, [[COORDINATES]]));
+    mode.addFeature(feature);
+    const internalGeojson = createMidpoint(
+      feature.id,
+      createVertex(feature.id, feature.getCoordinate(`0.0.${COORDINATES.length - 2}`), `0.0.${COORDINATES.length - 2}`, false),
+      createVertex(feature.id, feature.getCoordinate('0.0.0'), `0.0.${COORDINATES.length - 1}`, false),
       map
     );
 
