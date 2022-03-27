@@ -20,10 +20,14 @@ export function createCircle(center, radius, properties = {}) {
   };
 }
 
+export function isCircleByTypeAndProperties(type, properties) {
+  return type === Constants.geojsonTypes.POLYGON &&
+    typeof properties[Constants.properties.CIRCLE_RADIUS] === 'number' &&
+    properties[Constants.properties.CIRCLE_RADIUS] > 0;
+}
+
 export function isCircle(geojson) {
-  return geojson.geometry.type === Constants.geojsonTypes.POLYGON &&
-    typeof geojson.properties[Constants.properties.CIRCLE_RADIUS] === 'number' &&
-    geojson.properties[Constants.properties.CIRCLE_RADIUS] > 0;
+  return isCircleByTypeAndProperties(geojson.geometry.type, geojson.properties);
 }
 
 export function getCircleCenter(geojson) {
