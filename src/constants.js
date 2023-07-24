@@ -1,5 +1,12 @@
-import { modes as originalModes } from '@mapbox/mapbox-gl-draw/src/constants.js';
-export { cursors, geojsonTypes, events, meta, activeStates } from '@mapbox/mapbox-gl-draw/src/constants.js';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
+const originalModes = MapboxDraw.modes;
+var drawConstants;
+if (typeof MapboxDraw.constants !== 'undefined') {
+    drawConstants = MapboxDraw.constants
+} else {
+    drawConstants = await import('@mapbox/mapbox-gl-draw/src/constants');
+}
+export const { cursors, geojsonTypes, events, meta, activeStates } = drawConstants;
 
 export const modes = {
     ...originalModes,
