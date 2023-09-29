@@ -37,6 +37,7 @@
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-terser": "^0.4.3",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jest-matcher-deep-close-to": "^3.0.2",
     "jest-simple-summary": "^1.0.2",
     "rimraf": "^5.0.5",
