@@ -1,12 +1,12 @@
-import Point from '@mapbox/mapbox-gl-draw/src/feature_types/point';
-import LineString from '@mapbox/mapbox-gl-draw/src/feature_types/line_string';
-import Polygon from '@mapbox/mapbox-gl-draw/src/feature_types/polygon';
-import MultiFeature from '@mapbox/mapbox-gl-draw/src/feature_types/multi_feature';
-import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex';
-import createMidpoint from '@mapbox/mapbox-gl-draw/src/lib/create_midpoint';
-import * as Constants from '../constants';
-import { createCircle } from './circle_geojson';
-import createGeodesicGeojson from './create_geodesic_geojson';
+import Point from '@mapbox/mapbox-gl-draw/src/feature_types/point.js';
+import LineString from '@mapbox/mapbox-gl-draw/src/feature_types/line_string.js';
+import Polygon from '@mapbox/mapbox-gl-draw/src/feature_types/polygon.js';
+import MultiFeature from '@mapbox/mapbox-gl-draw/src/feature_types/multi_feature.js';
+import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex.js';
+import createMidpoint from '@mapbox/mapbox-gl-draw/src/lib/create_midpoint.js';
+import * as Constants from '../constants.js';
+import { createCircle } from './circle_geojson.js';
+import createGeodesicGeojson from './create_geodesic_geojson.js';
 
 function createMapMock() {
   return {

@@ -11,8 +11,9 @@
   "author": "Jan Zak <zj@zakjan.cz>",
   "license": "MIT",
   "repository": "github:zakjan/mapbox-gl-draw-geodesic",
-  "main": "src/index.js",
-  "browser": "dist/mapbox-gl-draw-geodesic.min.js",
+  "main": "dist/mapbox-gl-draw-geodesic.cjs.js",
+  "module": "dist/mapbox-gl-draw-geodesic.esm.js",
+  "browser": "dist/mapbox-gl-draw-geodesic.umd.min.js",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -c -w",

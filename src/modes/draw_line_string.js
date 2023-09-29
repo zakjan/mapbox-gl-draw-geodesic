@@ -1,4 +1,4 @@
-import createGeodesicFeature from '../utils/create_geodesic_geojson';
+import createGeodesicFeature from '../utils/create_geodesic_geojson.js';
 
 function patchDrawLineString(DrawLineString) {
   const DrawLineStringPatched = { ...DrawLineString };

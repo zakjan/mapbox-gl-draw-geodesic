@@ -5,12 +5,12 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
 
-function bundle(filename, options = {}) {
+function bundle(format, filename, options = {}) {
   return {
     input: 'src/index.js',
     output: {
       file: filename,
-      format: 'umd',
+      format: format,
       name: 'MapboxDrawGeodesic',
       sourcemap: true,
       globals: {
@@ -19,11 +19,19 @@ function bundle(filename, options = {}) {
     },
     external: [
       ...Object.keys(pkg.peerDependencies),
+      ...(!options.resolve ? [
+        ...Object.keys(pkg.dependencies),
+        '@mapbox/mapbox-gl-draw/src/constants.js',
+        '@mapbox/mapbox-gl-draw/src/lib/common_selectors.js',
+        '@mapbox/mapbox-gl-draw/src/lib/double_click_zoom.js',
+        '@mapbox/mapbox-gl-draw/src/lib/create_vertex.js',
+        'geodesy-fn/src/spherical.js',
+      ] : []),
       'fs',
       'path',
     ],
     plugins: [
-      resolve(),
+      ...(options.resolve ? [resolve()] : []),
       commonjs(),
       babel({ babelHelpers: 'runtime' }),
       options.minimize ? terser() : false,
@@ -35,6 +43,8 @@ function bundle(filename, options = {}) {
 }
 
 export default [
-  bundle(pkg.browser.replace('.min', ''), { stats: true }),
-  bundle(pkg.browser, { minimize: true }),
+  bundle('cjs', pkg.main),
+  bundle('es', pkg.module),
+  bundle('umd', pkg.browser.replace('.min', ''), { resolve: true, stats: true }),
+  bundle('umd', pkg.browser, { resolve: true, minimize: true }),
 ];

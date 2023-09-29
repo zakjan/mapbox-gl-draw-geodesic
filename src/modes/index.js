@@ -1,12 +1,12 @@
 
-import * as Constants from '../constants';
-import patchDrawLineString from './draw_line_string';
-import patchDrawPolygon from './draw_polygon';
-import DrawCircle from './draw_circle';
-import patchDrawPoint from './draw_point';
-import patchSimpleSelect from './simple_select';
-import patchDirectSelect from './direct_select';
-import Static from './static';
+import * as Constants from '../constants.js';
+import patchDrawLineString from './draw_line_string.js';
+import patchDrawPolygon from './draw_polygon.js';
+import DrawCircle from './draw_circle.js';
+import patchDrawPoint from './draw_point.js';
+import patchSimpleSelect from './simple_select.js';
+import patchDirectSelect from './direct_select.js';
+import Static from './static.js';
 
 export function enable(modes) {
     return {

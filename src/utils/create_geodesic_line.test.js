@@ -1,4 +1,4 @@
-import createGeodesicLine from './create_geodesic_line';
+import createGeodesicLine from './create_geodesic_line.js';
 
 const STEPS = 8;
 const COORDINATES = [[-40, 37.5], [40, 37.5], [40, 30], [-40, -30], [-40, -37.5], [40, -37.5]];

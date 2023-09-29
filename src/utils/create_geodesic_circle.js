@@ -1,4 +1,4 @@
-import { destinationPoint } from './geodesy';
+import { destinationPoint } from './geodesy.js';
 
 function createGeodesicCircle(center, radius, bearing, steps) {
   const coordinates = [];

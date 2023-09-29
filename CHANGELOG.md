@@ -1,5 +1,7 @@
 # Changelog
 
+- add ESM and CJS build
+
 ## 2.1.3
 
 - improve performance for large lines

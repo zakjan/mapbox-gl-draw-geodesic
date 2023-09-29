@@ -1,5 +1,5 @@
-import * as Constants from '../constants';
-import { createCircle, isCircle, getCircleCenter, setCircleCenter, getCircleRadius, setCircleRadius } from './circle_geojson';
+import * as Constants from '../constants.js';
+import { createCircle, isCircle, getCircleCenter, setCircleCenter, getCircleRadius, setCircleRadius } from './circle_geojson.js';
 
 const CENTER = [0, 0];
 const NEW_CENTER = [10, 0];
