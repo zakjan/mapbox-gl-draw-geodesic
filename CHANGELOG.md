@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.2.1
+
 - fix demo library path
 
 ## 2.2.0
