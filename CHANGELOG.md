@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.2.0
+
 - add ESM and CJS build
 
 ## 2.1.3
