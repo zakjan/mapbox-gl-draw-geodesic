@@ -1,5 +1,7 @@
 # Changelog
 
+- fix demo library path
+
 ## 2.2.0
 
 - add ESM and CJS build
