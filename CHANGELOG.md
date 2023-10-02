@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.3
+
+- add .npmignore to keep dist in the published package 
+
 ## 2.2.2
 
 - fix ESM exports
