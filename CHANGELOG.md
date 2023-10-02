@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2
+
+- fix ESM exports
+
 ## 2.2.1
 
 - fix demo library path
