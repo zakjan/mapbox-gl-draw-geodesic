@@ -6,10 +6,6 @@ export default {
   transformIgnorePatterns: [
     'node_modules/(?!(@mapbox/mapbox-gl-draw|geodesy-fn)/)'
   ],
-  reporters: [
-    'default',
-    'jest-simple-summary'
-  ],
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.js',
