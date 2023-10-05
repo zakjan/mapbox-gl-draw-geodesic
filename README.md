@@ -29,7 +29,7 @@ npm install mapbox-gl-draw-geodesic
 or
 
 ```
-<script src="https://unpkg.com/mapbox-gl-draw-geodesic@2.2.3/dist/mapbox-gl-draw-geodesic.umd.min.js"></script>
+<script src="https://unpkg.com/mapbox-gl-draw-geodesic@2.2.4/dist/mapbox-gl-draw-geodesic.umd.min.js"></script>
 ```
 
 ## Usage
