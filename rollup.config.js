@@ -21,7 +21,6 @@ function bundle(format, filename, options = {}) {
       ...Object.keys(pkg.peerDependencies),
       ...(!options.resolve ? [
         ...Object.keys(pkg.dependencies),
-        'geodesy-fn/src/spherical.js',
       ] : []),
       'fs',
       'path',
