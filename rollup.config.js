@@ -21,17 +21,13 @@ function bundle(format, filename, options = {}) {
       ...Object.keys(pkg.peerDependencies),
       ...(!options.resolve ? [
         ...Object.keys(pkg.dependencies),
-        '@mapbox/mapbox-gl-draw/src/constants.js',
-        '@mapbox/mapbox-gl-draw/src/lib/common_selectors.js',
-        '@mapbox/mapbox-gl-draw/src/lib/double_click_zoom.js',
-        '@mapbox/mapbox-gl-draw/src/lib/create_vertex.js',
         'geodesy-fn/src/spherical.js',
       ] : []),
       'fs',
       'path',
     ],
     plugins: [
-      ...(options.resolve ? [resolve()] : []),
+      ...(options.resolve ? [resolve()] : [resolve({ resolveOnly: [/^@mapbox\/mapbox-gl-draw\/src\/.*/] })]),
       commonjs(),
       babel({ babelHelpers: 'runtime' }),
       options.minimize ? terser() : false,
