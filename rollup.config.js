@@ -22,11 +22,9 @@ function bundle(format, filename, options = {}) {
       ...(!options.resolve ? [
         ...Object.keys(pkg.dependencies),
       ] : []),
-      'fs',
-      'path',
     ],
     plugins: [
-      ...(options.resolve ? [resolve()] : [resolve({ resolveOnly: [/^@mapbox\/mapbox-gl-draw\/src\/.*/] })]),
+      ...(options.resolve ? [resolve()] : [resolve({ resolveOnly: ['@mapbox/mapbox-gl-draw'] })]),
       commonjs(),
       babel({ babelHelpers: 'runtime' }),
       options.minimize ? terser() : false,
