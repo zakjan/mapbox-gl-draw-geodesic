@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.5
+
+- bundle mapbox-gl-draw 1.3.0 sources - fix resolveOnly
+
 ## 2.2.4
 
 - bundle mapbox-gl-draw 1.3.0 sources
