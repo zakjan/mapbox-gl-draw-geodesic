@@ -1,5 +1,5 @@
-import * as CommonSelectors from '@mapbox/mapbox-gl-draw/src/lib/common_selectors.js';
-import doubleClickZoom from '@mapbox/mapbox-gl-draw/src/lib/double_click_zoom.js';
+import { lib } from '@mapbox/mapbox-gl-draw';
+const { doubleClickZoom, CommonSelectors } = lib;
 import * as Constants from '../constants.js';
 import { createCircle, getCircleCenter } from '../utils/circle_geojson.js';
 import { distance, initialBearing } from '../utils/geodesy.js';

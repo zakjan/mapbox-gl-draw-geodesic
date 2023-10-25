@@ -4,11 +4,11 @@ import { distance as geodesyDistance, destinationPoint as geodesyDestinationPoin
 const DEFAULT_RADIUS = 6371.0088;
 
 export function distance(start, destination) {
-    return geodesyDistance(start, destination, DEFAULT_RADIUS);
+  return geodesyDistance(start, destination, DEFAULT_RADIUS);
 }
 
 export function destinationPoint(start, distance, bearing) {
-    return geodesyDestinationPoint(start, distance, bearing, DEFAULT_RADIUS);
+  return geodesyDestinationPoint(start, distance, bearing, DEFAULT_RADIUS);
 }
 
 export { initialBearing, midpoint } from 'geodesy-fn';
