@@ -1,4 +1,4 @@
-import createGeodesicCircle from './create_geodesic_circle';
+import createGeodesicCircle from './create_geodesic_circle.js';
 
 const STEPS = 8;
 const CENTER = [0, 0];

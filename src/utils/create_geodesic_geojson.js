@@ -1,9 +1,9 @@
-import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex';
-import * as Constants from '../constants';
-import { isCircleByTypeAndProperties, getCircleCenter, getCircleRadius } from './circle_geojson';
-import createGeodesicLine from './create_geodesic_line';
-import createGeodesicCircle from './create_geodesic_circle';
-import { midpoint, destinationPoint } from './geodesy';
+import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex.js';
+import * as Constants from '../constants.js';
+import { isCircleByTypeAndProperties, getCircleCenter, getCircleRadius } from './circle_geojson.js';
+import createGeodesicLine from './create_geodesic_line.js';
+import createGeodesicCircle from './create_geodesic_circle.js';
+import { midpoint, destinationPoint } from './geodesy.js';
 
 const STEPS = 32;
 const HANDLE_BEARING = 45;

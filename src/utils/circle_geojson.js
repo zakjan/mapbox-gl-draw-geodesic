@@ -1,5 +1,5 @@
 import hat from 'hat';
-import * as Constants from '../constants';
+import * as Constants from '../constants.js';
 
 export function createCircle(center, radius, properties = {}) {
   if (!(radius > 0)) {

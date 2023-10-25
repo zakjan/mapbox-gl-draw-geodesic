@@ -1,7 +1,7 @@
-import * as Constants from '../constants';
-import { isCircle, getCircleCenter } from '../utils/circle_geojson';
-import { distance, initialBearing } from '../utils/geodesy';
-import createGeodesicGeojson from '../utils/create_geodesic_geojson';
+import * as Constants from '../constants.js';
+import { isCircle, getCircleCenter } from '../utils/circle_geojson.js';
+import { distance, initialBearing } from '../utils/geodesy.js';
+import createGeodesicGeojson from '../utils/create_geodesic_geojson.js';
 
 function patchDirectSelect(DirectSelect) {
   const DirectSelectPatched = { ...DirectSelect };

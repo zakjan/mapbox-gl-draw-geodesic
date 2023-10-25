@@ -1,4 +1,4 @@
-import createGeodesicGeojson from '../utils/create_geodesic_geojson';
+import createGeodesicGeojson from '../utils/create_geodesic_geojson.js';
 
 function patchDrawPoint(DrawPoint) {
   const DrawPointPatched = { ...DrawPoint };

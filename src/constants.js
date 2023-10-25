@@ -1,5 +1,5 @@
-import { modes as originalModes } from '@mapbox/mapbox-gl-draw/src/constants';
-export { cursors, geojsonTypes, events, meta, activeStates } from '@mapbox/mapbox-gl-draw/src/constants';
+import { modes as originalModes } from '@mapbox/mapbox-gl-draw/src/constants.js';
+export { cursors, geojsonTypes, events, meta, activeStates } from '@mapbox/mapbox-gl-draw/src/constants.js';
 
 export const modes = {
     ...originalModes,

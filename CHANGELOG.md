@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.2.5
+
+- bundle mapbox-gl-draw 1.3.0 sources - fix resolveOnly
+
+## 2.2.4
+
+- bundle mapbox-gl-draw 1.3.0 sources
+
+## 2.2.3
+
+- add .npmignore to keep dist in the published package 
+
+## 2.2.2
+
+- fix ESM exports
+
+## 2.2.1
+
+- fix demo library path
+
+## 2.2.0
+
+- add ESM and CJS build
+
 ## 2.1.3
 
 - improve performance for large lines

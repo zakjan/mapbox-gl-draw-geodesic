@@ -1,5 +1,5 @@
 import arc from 'arc';
-import * as Constants from '../constants';
+import * as Constants from '../constants.js';
 
 function coordinatesEqual(x, y) {
   return x[0] === y[0] && x[1] === y[1];
