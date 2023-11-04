@@ -1,5 +1,4 @@
-import * as CommonSelectors from '@mapbox/mapbox-gl-draw/src/lib/common_selectors.js';
-import doubleClickZoom from '@mapbox/mapbox-gl-draw/src/lib/double_click_zoom.js';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import * as Constants from '../constants.js';
 import { createCircle, getCircleCenter } from '../utils/circle_geojson.js';
 import { distance, initialBearing } from '../utils/geodesy.js';
@@ -10,7 +9,7 @@ const DrawCircleGeodesic = {};
 
 DrawCircleGeodesic.onSetup = function(opts) {
   this.clearSelectedFeatures();
-  doubleClickZoom.disable(this);
+  MapboxDraw.lib.doubleClickZoom.disable(this);
   dragPan.disable(this);
   this.updateUIClasses({ mouse: Constants.cursors.ADD });
   this.setActionableState(); // default actionable state is false for all actions
@@ -43,19 +42,19 @@ DrawCircleGeodesic.onMouseUp = DrawCircleGeodesic.onTouchEnd = function(state, e
 };
 
 DrawCircleGeodesic.onKeyUp = function(state, e) {
-  if (CommonSelectors.isEscapeKey(e)) {
+  if (MapboxDraw.lib.CommonSelectors.isEscapeKey(e)) {
     if (state.circle) {
       this.deleteFeature([state.circle.id], { silent: true });
     }
     this.changeMode(Constants.modes.SIMPLE_SELECT);
-  } else if (CommonSelectors.isEnterKey(e)) {
+  } else if (MapboxDraw.lib.CommonSelectors.isEnterKey(e)) {
     this.changeMode(Constants.modes.SIMPLE_SELECT, { featureIds: [state.circle.id] });
   }
 };
 
 DrawCircleGeodesic.onStop = function() {
   this.updateUIClasses({ mouse: Constants.cursors.NONE });
-  doubleClickZoom.enable(this);
+  MapboxDraw.lib.doubleClickZoom.enable(this);
   dragPan.enable(this);
   this.activateUIButton();
 }

@@ -1,9 +1,8 @@
-import Point from '@mapbox/mapbox-gl-draw/src/feature_types/point.js';
-import LineString from '@mapbox/mapbox-gl-draw/src/feature_types/line_string.js';
-import Polygon from '@mapbox/mapbox-gl-draw/src/feature_types/polygon.js';
-import MultiFeature from '@mapbox/mapbox-gl-draw/src/feature_types/multi_feature.js';
-import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex.js';
-import createMidpoint from '@mapbox/mapbox-gl-draw/src/lib/create_midpoint.js';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
+import Point from '../feature_types/point.js';
+import LineString from '../feature_types/line_string.js';
+import Polygon from '../feature_types/polygon.js';
+import MultiFeature from '../feature_types/multi_feature.js';
 import * as Constants from '../constants.js';
 import { createCircle } from './circle_geojson.js';
 import createGeodesicGeojson from './create_geodesic_geojson.js';
@@ -115,10 +114,10 @@ describe('createGeodesicGeojson', () => {
   it('returns a line midpoint', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.LINE_STRING, COORDINATES));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate('0'), '0', false),
-      createVertex(feature.id, feature.getCoordinate('1'), '1', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0'), '0', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('1'), '1', false),
       map
     );
 
@@ -153,10 +152,10 @@ describe('createGeodesicGeojson', () => {
   it('returns a polygon midpoint', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.POLYGON, [COORDINATES]));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false),
-      createVertex(feature.id, feature.getCoordinate('0.1'), '0.1', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.1'), '0.1', false),
       map
     );
 
@@ -169,10 +168,10 @@ describe('createGeodesicGeojson', () => {
   it('returns a polygon midpoint, last midpoint', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.POLYGON, [COORDINATES]));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate(`0.${COORDINATES.length - 2}`), `0.${COORDINATES.length - 2}`, false),
-      createVertex(feature.id, feature.getCoordinate('0.0'), `0.${COORDINATES.length - 1}`, false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate(`0.${COORDINATES.length - 2}`), `0.${COORDINATES.length - 2}`, false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0'), `0.${COORDINATES.length - 1}`, false),
       map
     );
 
@@ -196,10 +195,10 @@ describe('createGeodesicGeojson', () => {
   it('returns a multiline midpoint', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.MULTI_LINE_STRING, [COORDINATES]));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false),
-      createVertex(feature.id, feature.getCoordinate('0.1'), '0.1', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.1'), '0.1', false),
       map
     );
 
@@ -223,10 +222,10 @@ describe('createGeodesicGeojson', () => {
   it('returns a multipolygon midpoint', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.MULTI_POLYGON, [[COORDINATES]]));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate('0.0.0'), '0.0.0', false),
-      createVertex(feature.id, feature.getCoordinate('0.0.1'), '0.0.1', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0.0'), '0.0.0', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0.1'), '0.0.1', false),
       map
     );
 
@@ -239,10 +238,10 @@ describe('createGeodesicGeojson', () => {
   it('returns a multipolygon midpoint, last midpoint', () => {
     const feature = mode.newFeature(createGeojson(Constants.geojsonTypes.MULTI_POLYGON, [[COORDINATES]]));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate(`0.0.${COORDINATES.length - 2}`), `0.0.${COORDINATES.length - 2}`, false),
-      createVertex(feature.id, feature.getCoordinate('0.0.0'), `0.0.${COORDINATES.length - 1}`, false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate(`0.0.${COORDINATES.length - 2}`), `0.0.${COORDINATES.length - 2}`, false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0.0'), `0.0.${COORDINATES.length - 1}`, false),
       map
     );
 
@@ -266,7 +265,7 @@ describe('createGeodesicGeojson', () => {
   it('hides a circle vertex', () => {
     const feature = mode.newFeature(createCircle(COORDINATE, RADIUS));
     mode.addFeature(feature);
-    const internalGeojson = createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false);
+    const internalGeojson = MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false);
 
     const expectedResult = [];
     const result = createGeodesicGeojson(internalGeojson, { ctx: mode._ctx, steps: STEPS });
@@ -277,10 +276,10 @@ describe('createGeodesicGeojson', () => {
   it('hides a circle midpoint', () => {
     const feature = mode.newFeature(createCircle(COORDINATE, RADIUS));
     mode.addFeature(feature);
-    const internalGeojson = createMidpoint(
+    const internalGeojson = MapboxDraw.lib.createMidPoint(
       feature.id,
-      createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false),
-      createVertex(feature.id, feature.getCoordinate('0.1'), '0.1', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.0'), '0.0', false),
+      MapboxDraw.lib.createVertex(feature.id, feature.getCoordinate('0.1'), '0.1', false),
       map
     );
 

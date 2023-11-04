@@ -9,14 +9,14 @@ import patchDirectSelect from './direct_select.js';
 import Static from './static.js';
 
 export function enable(modes) {
-    return {
-      ...modes,
-      [Constants.modes.DRAW_LINE_STRING]: patchDrawLineString(modes[Constants.modes.DRAW_LINE_STRING]),
-      [Constants.modes.DRAW_POLYGON]: patchDrawPolygon(modes[Constants.modes.DRAW_POLYGON]),
-      [Constants.modes.DRAW_CIRCLE]: DrawCircle,
-      [Constants.modes.DRAW_POINT]: patchDrawPoint(modes[Constants.modes.DRAW_POINT]),
-      [Constants.modes.SIMPLE_SELECT]: patchSimpleSelect(modes[Constants.modes.SIMPLE_SELECT]),
-      [Constants.modes.DIRECT_SELECT]: patchDirectSelect(modes[Constants.modes.DIRECT_SELECT]),
-      [Constants.modes.STATIC]: Static,
-    };
-  }
+  return {
+    ...modes,
+    [Constants.modes.DRAW_LINE_STRING]: patchDrawLineString(modes[Constants.modes.DRAW_LINE_STRING]),
+    [Constants.modes.DRAW_POLYGON]: patchDrawPolygon(modes[Constants.modes.DRAW_POLYGON]),
+    [Constants.modes.DRAW_CIRCLE]: DrawCircle,
+    [Constants.modes.DRAW_POINT]: patchDrawPoint(modes[Constants.modes.DRAW_POINT]),
+    [Constants.modes.SIMPLE_SELECT]: patchSimpleSelect(modes[Constants.modes.SIMPLE_SELECT]),
+    [Constants.modes.DIRECT_SELECT]: patchDirectSelect(modes[Constants.modes.DIRECT_SELECT]),
+    [Constants.modes.STATIC]: Static,
+  };
+}

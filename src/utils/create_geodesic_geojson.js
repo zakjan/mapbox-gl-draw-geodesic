@@ -1,4 +1,4 @@
-import createVertex from '@mapbox/mapbox-gl-draw/src/lib/create_vertex.js';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import * as Constants from '../constants.js';
 import { isCircleByTypeAndProperties, getCircleCenter, getCircleRadius } from './circle_geojson.js';
 import createGeodesicLine from './create_geodesic_line.js';
@@ -139,7 +139,7 @@ function createGeodesicGeojson(geojson, options) {
       const handle = destinationPoint(center, radius, handleBearing);
       const points = [center, handle];
       const vertices = points.map((point, i) => {
-        return createVertex(properties.id, point, `0.${i}`, isSelectedPath(`0.${i}`));
+        return MapboxDraw.lib.createVertex(properties.id, point, `0.${i}`, isSelectedPath(`0.${i}`));
       })
   
       return [geodesicGeojson, ...vertices];

@@ -24,7 +24,7 @@ function bundle(format, filename, options = {}) {
       ] : []),
     ],
     plugins: [
-      ...(options.resolve ? [resolve()] : [resolve({ resolveOnly: ['@mapbox/mapbox-gl-draw'] })]),
+      ...(options.resolve ? [resolve()] : []),
       commonjs(),
       babel({ babelHelpers: 'runtime' }),
       options.minimize ? terser() : false,
