@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.3.0
+
 - upgrade to mapbox-gl-draw 1.4.3
 
 ## 2.2.5
