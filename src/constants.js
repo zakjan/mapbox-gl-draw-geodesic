@@ -3,7 +3,7 @@ import MapboxDraw from '@mapbox/mapbox-gl-draw';
 export const { cursors, geojsonTypes, events, meta, activeStates } = MapboxDraw.constants;
 
 export const modes = {
-  ...MapboxDraw.modes,
+  ...MapboxDraw.constants.modes,
   DRAW_CIRCLE: 'draw_circle'
 };
 
