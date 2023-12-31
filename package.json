@@ -14,14 +14,14 @@
   "type": "module",
   "exports": {
     ".": {
-      "require": "./dist/mapbox-gl-draw-geodesic.cjs.js",
-      "import": "./dist/mapbox-gl-draw-geodesic.esm.js",
-      "script": "./dist/mapbox-gl-draw-geodesic.umd.min.js"
+      "require": "./src/index.js",
+      "import": "./src/index.js",
+      "script": "./src/index.js"
     }
   },
-  "main": "./dist/mapbox-gl-draw-geodesic.cjs.js",
-  "module": "./dist/mapbox-gl-draw-geodesic.esm.js",
-  "browser": "./dist/mapbox-gl-draw-geodesic.umd.min.js",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "browser": "./src/index.js",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "dev": "rollup -c -w",
